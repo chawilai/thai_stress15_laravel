@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,10 +30,11 @@ Route::get('/', function () {
     return Inertia::render('Stress15/Stress15');
 });
 
+Route::get('/saveQuestion', [QuestionsController::class, 'saveQuestion']);
+
 Route::get('/stress15', function () {
     return Inertia::render('Stress15/Stress15');
 });
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
