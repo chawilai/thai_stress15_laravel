@@ -280,7 +280,7 @@ export default {
 
                 const postData = {
                     totalScore: this.totalScore,
-                    answered: this.answered
+                    answered: this.answered,
                 };
 
                 //console.log(postData);
@@ -288,34 +288,27 @@ export default {
                     .post("/saveQuestion", postData)
                     .then((response) => {
                         console.log(response.data);
+                        // if (response.data.success) {
+                        //     window.location.href = "/success";
+                        // } else {
+                        //     console.error("Operation failed.");
+                        // }
                     })
                     .catch((error) => {
                         console.error(error);
                     });
             } else {
-                Swal.fire({
-                    title: "แจ้งเตือน",
-                    text: "โปรดตอบคำถามให้ครบทุกข้อ",
-                    icon: "warning",
-                    confirmButtonText: "ตกลง",
-                    didClose: () => {
-                        this.scrollToTop();
-                    },
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // ส่ง ข้อมูล
-                        // fetch('/saveData', {
-                        //   totalScore: this.totalScore,
-                        //   user: this.user,
-                        //   answered: this.answered,
-                        // })
-                        //   .then((response) => response.json())
-                        //   .then((data) => {
-                        //     console.log(data);
-                        //   });
-                    }
-                });
             }
+        },
+        fetchQuestions() {
+            axios
+                .get("/fetchQuestions")
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.log(response.error);
+                });
         },
     },
 };

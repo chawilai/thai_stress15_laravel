@@ -17,10 +17,22 @@ return new class extends Migration
             $table->string('last_name');
             $table->integer('user_id_card');
             $table->integer('totalScore');
-            $table->integer('question_number');
-            $table->timestamp('answer_timestamp');
-            $table->integer('answer_choice');
-            $table->integer('answer_score');
+            $table->string('question1');
+            $table->string('question2');
+            $table->string('question3');
+            $table->string('question4');
+            $table->string('question5');
+            $table->string('question6');
+            $table->string('question7');
+            $table->string('question8');
+            $table->string('question9');
+            $table->string('question10');
+            $table->string('question11');
+            $table->string('question12');
+            $table->string('question13');
+            $table->string('question14');
+            $table->string('question15');
+
             $table->timestamps();
         });
     }
