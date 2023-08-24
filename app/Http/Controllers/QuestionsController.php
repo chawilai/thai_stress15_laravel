@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Questions;
 use App\Models\UserAnswers;
+use App\Models\Answers;
 use App\Models\UserAnswersInfo;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -17,33 +18,29 @@ class QuestionsController extends Controller
     {
 
         //return $request;
-        $name = $request->name;
-        $phone = $request->phone;
-        $uic = $request->uic;
         $date_now = Carbon::now();
 
         $submited_at = $date_now->format('Y-m-d H:i:s');
-
         //return $submited_at;
-
-        // Create a new UserAnswersInfo instance and set its properties
         $userInfo = new UserAnswersInfo();
-        $userInfo->name = $name;
-        $userInfo->phone = $phone;
-        $userInfo->uic = $uic;
+        $userInfo->name = $request->name;
+        $userInfo->phone = $request->phone;
+        $userInfo->uic = $request->uic;
         $userInfo->submited_at = $submited_at;
 
-        // Save the user information to the database
-        $userInfo->save();
+        //$userInfo->save();
 
         // Redirect to a route
-        return Redirect::route('question');
+
+        //return Redirect::route('question');
+        return redirect()->route('question');
         //return Redirect::to('/question');
 
     }
 
     public function saveQuestion(Request $request)
     {
+        return $request;
         $answered = $request['answered'];
 
         $userAnswer = new UserAnswers();
@@ -61,5 +58,13 @@ class QuestionsController extends Controller
 
 
         return redirect()->route('success');
+    }
+
+    public function getAllQuestionsAndAnswers()
+    {
+        $questions = Questions::with('answers')->get();
+        //return $questions;
+
+        return response()->json(['questions' => $questions]);
     }
 }

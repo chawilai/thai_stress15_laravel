@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { Link, router } from "@inertiajs/vue3";
 export default {
     data() {
         return {
@@ -17,14 +18,7 @@ export default {
                 phone: this.user_info.phone,
                 uic: this.user_info.uic,
             };
-            axios
-                .post("/save_user_info", postData)
-                // .then((response) => {
-                //     console.log(response.data);
-                // })
-                // .catch((error) => {
-                //     console.log(response.error);
-                // });
+            router.post("/save_user_info", postData);
         },
     },
 };

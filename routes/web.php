@@ -37,6 +37,8 @@ Route::get('/question', function () {
     return Inertia::render('Stress15/Stress15');
 })->name('question');
 
+Route::get('/getAllQuestionandAnswer', [QuestionsController::class, 'getAllQuestionsAndAnswers']);
+
 Route::post('/saveQuestion', [QuestionsController::class, 'saveQuestion']);
 
 Route::get('/success', function (Request $request) {
@@ -45,7 +47,6 @@ Route::get('/success', function (Request $request) {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-
 })->name('success');
 
 Route::get('/stress15', function () {
@@ -61,4 +62,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
