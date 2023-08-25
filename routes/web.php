@@ -33,21 +33,20 @@ Route::get('/', function () {
 
 Route::post('/save_user_info', [QuestionsController::class, 'saveUserInfo']);
 
+
 Route::get('/question', function () {
-    return Inertia::render('Stress15/Stress15');
+    return Inertia::render('Stress15/Stress15', ['id' => request('id'),]);
 })->name('question');
 
 Route::get('/getAllQuestionandAnswer', [QuestionsController::class, 'getAllQuestionsAndAnswers']);
 
 Route::post('/saveQuestion', [QuestionsController::class, 'saveQuestion']);
 
-Route::get('/success', function (Request $request) {
-
-    return Inertia::render('Success', [
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::get('/success', function () {
+    return Inertia::render('Stress15/Success', ['id' => request('id'),]);
 })->name('success');
+
+Route::get('/getUserAnswerData', [QuestionsController::class, 'getUserAnswerData']);
 
 Route::get('/stress15', function () {
     return Inertia::render('Stress15/Stress15');
