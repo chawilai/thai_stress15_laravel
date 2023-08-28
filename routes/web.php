@@ -43,10 +43,17 @@ Route::get('/getAllQuestionandAnswer', [QuestionsController::class, 'getAllQuest
 Route::post('/saveQuestion', [QuestionsController::class, 'saveQuestion']);
 
 Route::get('/success', function () {
-    return Inertia::render('Stress15/Success', ['id' => request('id'),]);
+    return Inertia::render('Stress15/Success', ['id' => request('id'),'totalScore' => request('totalScore'),'assessment' => request('assessment'),]);
 })->name('success');
 
 Route::get('/getUserAnswerData', [QuestionsController::class, 'getUserAnswerData']);
+
+Route::post('/printForwarder', [QuestionsController::class, 'printForwarder']);
+
+Route::get('/forwarder', function () {
+    return Inertia::render('Stress15/Forwarder');
+})->name('forwarder');
+
 
 Route::get('/stress15', function () {
     return Inertia::render('Stress15/Stress15');
@@ -56,6 +63,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/admin', [ProfileController::class, 'admin'])->name('admin.home');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

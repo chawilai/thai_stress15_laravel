@@ -60,7 +60,7 @@ class QuestionsController extends Controller
             }
         }
 
-        return to_route('success', ['id' => $id]);
+        return to_route('success', ['id' => $id, 'totalScore' => $totalScore, 'assessment' => $assessment]);
     }
 
     public function getAllQuestionsAndAnswers()
@@ -89,5 +89,10 @@ class QuestionsController extends Controller
             ->get();
 
         return $getUserAnswerData;
+    }
+
+    public function printForwarder(Request $request){
+        return to_route('forwarder');
+
     }
 }
